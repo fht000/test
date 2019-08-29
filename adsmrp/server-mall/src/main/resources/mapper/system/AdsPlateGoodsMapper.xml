@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsPlateGoodsMapper">
+
+    <resultMap type="AdsPlateGoods" id="AdsPlateGoodsResult">
+                    <result property="id" column="id"/>
+                    <result property="plateId" column="plate_id"/>
+                    <result property="goodsId" column="goods_id"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+                    <result property="deletFlg" column="delet_flg"/>
+            </resultMap>
+
+    <sql id="selectAdsPlateGoodsVo">
+        select id, plate_id, goods_id, merchant_id, merchant_name, create_time, creater_id, creater, update_time, updater, delet_flg        from ads_plate_goods
+    </sql>
+
+    <select id="selectAdsPlateGoodsList" parameterType="AdsPlateGoods" resultMap="AdsPlateGoodsResult">
+        <include refid="selectAdsPlateGoodsVo"/>
+        where delet_flg = 0
+
+                            <if test="id != null  and id != '' ">and id = #{id}
+                </if>
+                            <if test="plateId != null  and plateId != '' ">and plate_id = #{plateId}
+                </if>
+                            <if test="goodsId != null  and goodsId != '' ">and goods_id = #{goodsId}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="deletFlg != null ">and delet_flg = #{deletFlg}
+                </if>
+
+    </select>
+
+    <select id="selectAdsPlateGoodsById" parameterType="String" resultMap="AdsPlateGoodsResult">
+        <include refid="selectAdsPlateGoodsVo"/>
+        where delet_flg = 0 and id = #{id}
+    </select>
+
+    <insert id="insertAdsPlateGoods" parameterType="AdsPlateGoods">
+        insert into ads_plate_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="id != null  and id != ''  ">id,
+                    </if>
+                                                                <if test="plateId != null  and plateId != ''  ">plate_id,
+                    </if>
+                                                                <if test="goodsId != null  and goodsId != ''  ">goods_id,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                <if test="createTime != null  ">create_time,
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                <if test="updateTime != null  ">update_time,
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                                                <if test="deletFlg != null  ">delet_flg,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="id != null  and id != ''  ">#{id},
+                    </if>
+                                                                <if test="plateId != null  and plateId != ''  ">#{plateId},
+                    </if>
+                                                                <if test="goodsId != null  and goodsId != ''  ">#{goodsId},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                                <if test="createTime != null  ">#{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">#{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                                                <if test="deletFlg != null  ">#{deletFlg},
+                    </if>
+                                    </trim>
+    </insert>
+
+
+    <!-- 批量插入数据 -->
+    <insert id="insertBatchAdsPlateGoods" parameterType="java.util.List">
+        insert into ads_plate_goods
+        (id,plate_id,goods_id,merchant_id,merchant_name,create_time,creater_id,creater,update_time,updater)
+        values
+        <foreach collection="list" item="adsPlateGoodsList" index="index"
+                 separator=",">
+            (
+            #{adsPlateGoodsList.id},#{adsPlateGoodsList.plateId},#{adsPlateGoodsList.goodsId},#{adsPlateGoodsList.merchantId},#{adsPlateGoodsList.merchantName},
+            #{adsPlateGoodsList.createTime},#{adsPlateGoodsList.createrId},#{adsPlateGoodsList.creater},#{adsPlateGoodsList.updateTime},
+            #{adsPlateGoodsList.updater}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="updateAdsPlateGoods" parameterType="AdsPlateGoods">
+        update ads_plate_goods
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="plateId != null  and plateId != ''  ">plate_id = #{plateId},
+                    </if>
+                                                                <if test="goodsId != null  and goodsId != ''  ">goods_id = #{goodsId},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">update_time = #{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                                                <if test="deletFlg != null  ">delet_flg = #{deletFlg},
+                    </if>
+                                    </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAdsPlateGoodsById" parameterType="String">
+        update ads_plate_goods set delet_flg = 1 where id = #{id}
+    </delete>
+
+    <delete id="deleteAdsPlateGoodsByIds" parameterType="String">
+        update ads_plate_goods set delet_flg = 1 where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsPlateMapper">
+
+    <resultMap type="AdsPlate" id="AdsPlateResult">
+                    <result property="plateId" column="plate_id"/>
+                    <result property="plateName" column="plate_name"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="plateUrl" column="plate_url"/>
+                    <result property="sequence" column="sequence"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+                    <result property="status" column="status"/>
+                    <result property="remark" column="remark"/>
+                    <result property="deletFlg" column="delet_flg"/>
+                    <result property="plateType" column="plate_type"/>
+            </resultMap>
+
+    <sql id="selectAdsPlateVo">
+        select plate_id, plate_name, merchant_id, merchant_name, plate_url, sequence, create_time, creater_id, creater, update_time, updater, status, remark, delet_flg, plate_type        from ads_plate
+    </sql>
+
+    <select id="selectAdsPlateList" parameterType="AdsPlate" resultMap="AdsPlateResult">
+        <include refid="selectAdsPlateVo"/>
+        where delet_flg = 0
+                            <if test="plateId != null  and plateId != '' ">and plate_id = #{plateId}
+                </if>
+                            <if test="plateName != null  and plateName != '' ">and plate_name = #{plateName}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="plateUrl != null  and plateUrl != '' ">and plate_url = #{plateUrl}
+                </if>
+                            <if test="sequence != null  and sequence != '' ">and sequence = #{sequence}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="status != null ">and status = #{status}
+                </if>
+                            <if test="remark != null  and remark != '' ">and remark = #{remark}
+                </if>
+                            <if test="deletFlg != null ">and delet_flg = #{deletFlg}
+                </if>
+                            <if test="plateType != null ">and plate_type = #{plateType}
+                </if>
+    </select>
+
+    <select id="selectAdsPlateById" parameterType="String" resultMap="AdsPlateResult">
+        <include refid="selectAdsPlateVo"/>
+        where delet_flg = 0 and plate_id = #{plateId}
+    </select>
+
+    <insert id="insertAdsPlate" parameterType="AdsPlate">
+        insert into ads_plate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="plateId != null  and plateId != ''  ">plate_id,
+                    </if>
+                                                                <if test="plateName != null  and plateName != ''  ">plate_name,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                <if test="plateUrl != null  and plateUrl != ''  ">plate_url,
+                    </if>
+                                                                <if test="sequence != null  and sequence != ''  ">sequence,
+                    </if>
+                                                                <if test="createTime != null  ">create_time,
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                <if test="updateTime != null  ">update_time,
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                                                <if test="status != null  ">status,
+                    </if>
+                                                                <if test="remark != null  and remark != ''  ">remark,
+                    </if>
+                                                                <if test="deletFlg != null  ">delet_flg,
+                    </if>
+                                                                <if test="plateType != null  ">plate_type,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="plateId != null  and plateId != ''  ">#{plateId},
+                    </if>
+                                                                <if test="plateName != null  and plateName != ''  ">#{plateName},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                                <if test="plateUrl != null  and plateUrl != ''  ">#{plateUrl},
+                    </if>
+                                                                <if test="sequence != null  and sequence != ''  ">#{sequence},
+                    </if>
+                                                                <if test="createTime != null  ">#{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">#{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                                                <if test="status != null  ">#{status},
+                    </if>
+                                                                <if test="remark != null  and remark != ''  ">#{remark},
+                    </if>
+                                                                <if test="deletFlg != null  ">#{deletFlg},
+                    </if>
+                                                                <if test="plateType != null  ">#{plateType},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsPlate" parameterType="AdsPlate">
+        update ads_plate
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="plateName != null  and plateName != ''  ">plate_name = #{plateName},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="plateUrl != null  and plateUrl != ''  ">plate_url = #{plateUrl},
+                    </if>
+                                                                <if test="sequence != null  and sequence != ''  ">sequence = #{sequence},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">update_time = #{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                                                <if test="status != null  ">status = #{status},
+                    </if>
+                                                                <if test="remark != null  and remark != ''  ">remark = #{remark},
+                    </if>
+                                                                <if test="deletFlg != null  ">delet_flg = #{deletFlg},
+                    </if>
+                                                                <if test="plateType != null  ">plate_type = #{plateType},
+                    </if>
+                                    </trim>
+        where plate_id = #{plateId}
+    </update>
+
+    <delete id="deleteAdsPlateById" parameterType="String">
+        update ads_plate set delet_flg = 1 where plate_id = #{plateId}
+    </delete>
+
+    <delete id="deleteAdsPlateByIds" parameterType="String">
+        update ads_plate set delet_flg = 1 where plate_id in
+        <foreach item="plateId" collection="array" open="(" separator="," close=")">
+            #{plateId}
+        </foreach>
+    </delete>
+
+</mapper>

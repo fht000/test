@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsOrderRebackMapper">
+
+    <resultMap type="AdsOrderReback" id="AdsOrderRebackResult">
+                    <result property="rebackId" column="reback_id"/>
+                    <result property="orderId" column="order_id"/>
+                    <result property="orderCode" column="order_code"/>
+                    <result property="userId" column="user_id"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="rebackGoodsIds" column="reback_goods_ids"/>
+                    <result property="rebackGoodsNames" column="reback_goods_names"/>
+                    <result property="rebackNum" column="reback_num"/>
+                    <result property="rebackMoney" column="reback_money"/>
+                    <result property="rebackReason" column="reback_reason"/>
+                    <result property="rebackDes" column="reback_des"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+                    <result property="handleTime" column="handle_time"/>
+                    <result property="status" column="status"/>
+                    <result property="result" column="result"/>
+                    <result property="type" column="type"/>
+                    <result property="orderTime" column="order_time"/>
+                    <result property="orderStatus" column="order_status"/>
+                    <result property="remark" column="remark"/>
+            </resultMap>
+
+    <sql id="selectAdsOrderRebackVo">
+        select reback_id, order_id, order_code, user_id, merchant_id, merchant_name, reback_num, reback_money, reback_reason, reback_des, create_time, creater_id, creater, update_time, updater, handle_time, status, result, type,order_status,order_time,reback_goods_ids,reback_goods_names,remark        from ads_order_reback
+    </sql>
+
+    <select id="selectAdsOrderRebackList" parameterType="AdsOrderReback" resultMap="AdsOrderRebackResult">
+        <include refid="selectAdsOrderRebackVo"/>
+        <where>
+                            <if test="rebackId != null  and rebackId != '' ">and reback_id = #{rebackId}
+                </if>
+                            <if test="orderId != null  and orderId != '' ">and order_id = #{orderId}
+                </if>
+                            <if test="orderCode != null  and orderCode != '' ">and order_code = #{orderCode}
+                </if>
+                            <if test="userId != null  and userId != '' ">and user_id = #{userId}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="rebackNum != null ">and reback_num = #{rebackNum}
+                </if>
+                            <if test="rebackMoney != null ">and reback_money = #{rebackMoney}
+                </if>
+                            <if test="rebackReason != null ">and reback_reason = #{rebackReason}
+                </if>
+                            <if test="rebackDes != null  and rebackDes != '' ">and reback_des = #{rebackDes}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="handleTime != null ">and handle_time = #{handleTime}
+                </if>
+                            <if test="status != null ">and status = #{status}
+                </if>
+                            <if test="result != null ">and result = #{result}
+                </if>
+                            <if test="type != null ">and type = #{type}
+                </if>
+                            <if test="orderStatus != null ">and order_status = #{orderStatus}
+                </if>
+                <if test="startTime != null and startTime != '' ">and order_time &gt;= #{startTime}</if>
+                <if test="endTime != null and endTime != '' ">and order_time &lt;= #{endTime}</if>
+                    </where>
+    </select>
+
+    <select id="selectAdsOrderRebackTotal" parameterType="AdsOrderReback" resultType="java.lang.Integer">
+        select count(*) from  ads_order_reback
+        <where>
+                            <if test="rebackId != null  and rebackId != '' ">and reback_id = #{rebackId}
+                </if>
+                            <if test="orderId != null  and orderId != '' ">and order_id = #{orderId}
+                </if>
+                            <if test="orderCode != null  and orderCode != '' ">and order_code = #{orderCode}
+                </if>
+                            <if test="userId != null  and userId != '' ">and user_id = #{userId}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="rebackNum != null ">and reback_num = #{rebackNum}
+                </if>
+                            <if test="rebackMoney != null ">and reback_money = #{rebackMoney}
+                </if>
+                            <if test="rebackReason != null ">and reback_reason = #{rebackReason}
+                </if>
+                            <if test="rebackDes != null  and rebackDes != '' ">and reback_des = #{rebackDes}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and create_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="handleTime != null ">and handle_time = #{handleTime}
+                </if>
+                            <if test="status != null ">and status = #{status}
+                </if>
+                            <if test="result != null ">and result = #{result}
+                </if>
+                            <if test="type != null ">and type = #{type}
+                </if>
+                <if test="orderStatus != null ">and order_status = #{orderStatus}
+                </if>
+            <if test="startTime != null and startTime != '' ">and order_time &gt;= #{startTime}</if>
+            <if test="endTime != null and endTime != '' ">and order_time &lt;= #{endTime}</if>
+                    </where>
+    </select>
+
+    <select id="selectAdsOrderRebackById" parameterType="String" resultMap="AdsOrderRebackResult">
+        <include refid="selectAdsOrderRebackVo"/>
+        where reback_id = #{rebackId}
+    </select>
+
+    <insert id="insertAdsOrderReback" parameterType="AdsOrderReback">
+        insert into ads_order_reback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="rebackId != null  and rebackId != ''  ">reback_id,
+                    </if>
+                                                                <if test="orderId != null  and orderId != ''  ">order_id,
+                    </if>
+                                                                <if test="orderCode != null  and orderCode != ''  ">order_code,
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">user_id,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                <if test="rebackGoodsIds != null  and rebackGoodsIds != ''  ">reback_goods_ids,
+                    </if>
+                                                                <if test="rebackGoodsNames != null  and rebackGoodsNames != ''  ">reback_goods_names,
+                    </if>
+                                                                <if test="rebackNum != null  ">reback_num,
+                    </if>
+                                                                <if test="rebackMoney != null  ">reback_money,
+                    </if>
+                                                                <if test="rebackReason != null  ">reback_reason,
+                    </if>
+                                                                <if test="rebackDes != null  and rebackDes != ''  ">reback_des,
+                    </if>
+                                                                <if test="createTime != null  ">create_time,
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                <if test="updateTime != null  ">update_time,
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                                                <if test="handleTime != null  ">handle_time,
+                    </if>
+                                                                <if test="status != null  ">status,
+                    </if>
+                                                                <if test="result != null  ">result,
+                    </if>
+                                                                <if test="type != null  ">type,
+                    </if>
+                                                                <if test="remark != null  and remark != ''">remark,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="rebackId != null  and rebackId != ''  ">#{rebackId},
+                    </if>
+                                                                <if test="orderId != null  and orderId != ''  ">#{orderId},
+                    </if>
+                                                                <if test="orderCode != null  and orderCode != ''  ">#{orderCode},
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">#{userId},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                                <if test="rebackNum != null  ">#{rebackNum},
+                    </if>
+                                                                <if test="rebackMoney != null  ">#{rebackMoney},
+                    </if>
+                                                                <if test="rebackReason != null  ">#{rebackReason},
+                    </if>
+                                                                <if test="rebackDes != null  and rebackDes != ''  ">#{rebackDes},
+                    </if>
+                                                                <if test="createTime != null  ">#{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">#{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                                                <if test="handleTime != null  ">#{handleTime},
+                    </if>
+                                                                <if test="status != null  ">#{status},
+                    </if>
+                                                                <if test="result != null  ">#{result},
+                    </if>
+                                                                <if test="type != null  ">#{type},
+                    </if>
+                                                                <if test="remark != null and remark != '' ">#{remark},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsOrderReback" parameterType="AdsOrderReback">
+        update ads_order_reback
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="orderId != null  and orderId != ''  ">order_id = #{orderId},
+                    </if>
+                                                                <if test="orderCode != null  and orderCode != ''  ">order_code = #{orderCode},
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">user_id = #{userId},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="rebackNum != null  ">reback_num = #{rebackNum},
+                    </if>
+                                                                <if test="rebackMoney != null  ">reback_money = #{rebackMoney},
+                    </if>
+                                                                <if test="rebackReason != null  ">reback_reason = #{rebackReason},
+                    </if>
+                                                                <if test="rebackDes != null  and rebackDes != ''  ">reback_des = #{rebackDes},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">create_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">update_time = #{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                                                <if test="handleTime != null  ">handle_time = #{handleTime},
+                    </if>
+                                                                <if test="status != null  ">status = #{status},
+                    </if>
+                                                                <if test="result != null  ">result = #{result},
+                    </if>
+                                                                <if test="type != null  ">type = #{type},
+                    </if>
+                                                                <if test="remark != null and remark != ''  ">remark = #{remark},
+                    </if>
+                                    </trim>
+        where reback_id = #{rebackId}
+    </update>
+
+    <delete id="deleteAdsOrderRebackById" parameterType="String">
+        delete from ads_order_reback where reback_id = #{rebackId}
+    </delete>
+
+    <delete id="deleteAdsOrderRebackByIds" parameterType="String">
+        delete from ads_order_reback where reback_id in
+        <foreach item="rebackId" collection="array" open="(" separator="," close=")">
+            #{rebackId}
+        </foreach>
+    </delete>
+
+</mapper>

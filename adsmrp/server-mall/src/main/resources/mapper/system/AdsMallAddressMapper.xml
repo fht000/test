@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsMallAddressMapper">
+
+    <resultMap type="AdsMallAddress" id="AdsMallAddressResult">
+                    <result property="addressId" column="address_id"/>
+                    <result property="userId" column="user_id"/>
+                    <result property="consigneeName" column="consignee_name"/>
+                    <result property="consigneeMobile" column="consignee_mobile"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="provinceId" column="province_id"/>
+                    <result property="provinceName" column="province_name"/>
+                    <result property="cityId" column="city_id"/>
+                    <result property="cityName" column="city_name"/>
+                    <result property="areaId" column="area_id"/>
+                    <result property="areaName" column="area_name"/>
+                    <result property="detailAddress" column="detail_address"/>
+                    <result property="isDefault" column="is_default"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+            </resultMap>
+
+    <sql id="selectAdsMallAddressVo">
+        select address_id, user_id, consignee_name, consignee_mobile, merchant_id, merchant_name, province_id, province_name, city_id, city_name, area_id, area_name, detail_address, is_default, create_time, creater_id, creater, update_time, updater        from ads_mall_address
+    </sql>
+
+    <select id="selectAdsMallAddressList" parameterType="AdsMallAddress" resultMap="AdsMallAddressResult">
+        <include refid="selectAdsMallAddressVo"/>
+        <where>
+                            <if test="addressId != null  and addressId != '' ">and address_id = #{addressId}
+                </if>
+                            <if test="userId != null  and userId != '' ">and user_id = #{userId}
+                </if>
+                            <if test="consigneeName != null  and consigneeName != '' ">and consignee_name = #{consigneeName}
+                </if>
+                            <if test="consigneeMobile != null  and consigneeMobile != '' ">and consignee_mobile = #{consigneeMobile}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="provinceId != null  and provinceId != '' ">and province_id = #{provinceId}
+                </if>
+                            <if test="provinceName != null  and provinceName != '' ">and province_name = #{provinceName}
+                </if>
+                            <if test="cityId != null  and cityId != '' ">and city_id = #{cityId}
+                </if>
+                            <if test="cityName != null  and cityName != '' ">and city_name = #{cityName}
+                </if>
+                            <if test="areaId != null  and areaId != '' ">and area_id = #{areaId}
+                </if>
+                            <if test="areaName != null  and areaName != '' ">and area_name = #{areaName}
+                </if>
+                            <if test="detailAddress != null  and detailAddress != '' ">and detail_address = #{detailAddress}
+                </if>
+                            <if test="isDefault != null ">and is_default = #{isDefault}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsMallAddressById" parameterType="String" resultMap="AdsMallAddressResult">
+        <include refid="selectAdsMallAddressVo"/>
+        where address_id = #{addressId}
+    </select>
+
+    <insert id="insertAdsMallAddress" parameterType="AdsMallAddress">
+        insert into ads_mall_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="addressId != null  and addressId != ''  ">address_id,
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">user_id,
+                    </if>
+                                                                <if test="consigneeName != null  and consigneeName != ''  ">consignee_name,
+                    </if>
+                                                                <if test="consigneeMobile != null  and consigneeMobile != ''  ">consignee_mobile,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                <if test="provinceId != null  and provinceId != ''  ">province_id,
+                    </if>
+                                                                <if test="provinceName != null  and provinceName != ''  ">province_name,
+                    </if>
+                                                                <if test="cityId != null  and cityId != ''  ">city_id,
+                    </if>
+                                                                <if test="cityName != null  and cityName != ''  ">city_name,
+                    </if>
+                                                                <if test="areaId != null  and areaId != ''  ">area_id,
+                    </if>
+                                                                <if test="areaName != null  and areaName != ''  ">area_name,
+                    </if>
+                                                                <if test="detailAddress != null  and detailAddress != ''  ">detail_address,
+                    </if>
+                                                                <if test="isDefault != null  ">is_default,
+                    </if>
+                                                                create_time,
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                update_time,
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="addressId != null  and addressId != ''  ">#{addressId},
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">#{userId},
+                    </if>
+                                                                <if test="consigneeName != null  and consigneeName != ''  ">#{consigneeName},
+                    </if>
+                                                                <if test="consigneeMobile != null  and consigneeMobile != ''  ">#{consigneeMobile},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                                <if test="provinceId != null  and provinceId != ''  ">#{provinceId},
+                    </if>
+                                                                <if test="provinceName != null  and provinceName != ''  ">#{provinceName},
+                    </if>
+                                                                <if test="cityId != null  and cityId != ''  ">#{cityId},
+                    </if>
+                                                                <if test="cityName != null  and cityName != ''  ">#{cityName},
+                    </if>
+                                                                <if test="areaId != null  and areaId != ''  ">#{areaId},
+                    </if>
+                                                                <if test="areaName != null  and areaName != ''  ">#{areaName},
+                    </if>
+                                                                <if test="detailAddress != null  and detailAddress != ''  ">#{detailAddress},
+                    </if>
+                                                                <if test="isDefault != null  ">#{isDefault},
+                    </if>
+                                                                now(),
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                now(),
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsMallAddress" parameterType="AdsMallAddress">
+        update ads_mall_address
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="userId != null  and userId != ''  ">user_id = #{userId},
+                    </if>
+                                                                <if test="consigneeName != null  and consigneeName != ''  ">consignee_name = #{consigneeName},
+                    </if>
+                                                                <if test="consigneeMobile != null  and consigneeMobile != ''  ">consignee_mobile = #{consigneeMobile},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="provinceId != null  and provinceId != ''  ">province_id = #{provinceId},
+                    </if>
+                                                                <if test="provinceName != null  and provinceName != ''  ">province_name = #{provinceName},
+                    </if>
+                                                                <if test="cityId != null  and cityId != ''  ">city_id = #{cityId},
+                    </if>
+                                                                <if test="cityName != null  and cityName != ''  ">city_name = #{cityName},
+                    </if>
+                                                                <if test="areaId != null  and areaId != ''  ">area_id = #{areaId},
+                    </if>
+                                                                <if test="areaName != null  and areaName != ''  ">area_name = #{areaName},
+                    </if>
+                                                                <if test="detailAddress != null  and detailAddress != ''  ">detail_address = #{detailAddress},
+                    </if>
+                                                                <if test="isDefault != null  ">is_default = #{isDefault},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                update_time = now(),
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                    </trim>
+        where address_id = #{addressId}
+    </update>
+
+    <update id="updateAdsMallAddressDefault" parameterType="AdsMallAddress">
+      update ads_mall_address set is_default = #{isDefault} where user_id = #{userId} and merchant_id = #{merchantId}
+    </update>
+
+    <delete id="deleteAdsMallAddressById" parameterType="String">
+        delete from ads_mall_address where address_id = #{addressId}
+    </delete>
+
+    <delete id="deleteAdsMallAddressByIds" parameterType="String">
+        delete from ads_mall_address where address_id in
+        <foreach item="addressId" collection="array" open="(" separator="," close=")">
+            #{addressId}
+        </foreach>
+    </delete>
+
+</mapper>

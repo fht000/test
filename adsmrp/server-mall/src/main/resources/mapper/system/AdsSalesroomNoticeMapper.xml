@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsSalesroomNoticeMapper">
+
+    <resultMap type="AdsSalesroomNotice" id="AdsSalesroomNoticeResult">
+                    <result property="noticeId" column="notice_id"/>
+                    <result property="title" column="title"/>
+                    <result property="content" column="content"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+                    <result property="publicationTime" column="publication_time"/>
+                    <result property="userId" column="user_id"/>
+                    <result property="status" column="status"/>
+                    <result property="plateId" column="plate_id"/>
+            </resultMap>
+
+    <sql id="selectAdsSalesroomNoticeVo">
+        select notice_id, title, content, merchant_id, merchant_name, create_time, creater_id, creater, update_time, updater, publication_time, user_id, status, plate_id        from ads_salesroom_notice
+    </sql>
+
+    <select id="selectAdsSalesroomNoticeList" parameterType="AdsSalesroomNotice" resultMap="AdsSalesroomNoticeResult">
+        <include refid="selectAdsSalesroomNoticeVo"/>
+        <where>
+                            <if test="noticeId != null  and noticeId != '' ">and notice_id = #{noticeId}
+                </if>
+                            <if test="title != null  and title != '' ">and title = #{title}
+                </if>
+                            <if test="content != null  and content != '' ">and content = #{content}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="publicationTime != null ">and publication_time = #{publicationTime}
+                </if>
+                            <if test="userId != null ">and user_id = #{userId}
+                </if>
+                            <if test="status != null ">and status = #{status}
+                </if>
+                            <if test="plateId != null  and plateId != '' ">and plate_id = #{plateId}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsSalesroomNoticeTotal" parameterType="AdsSalesroomNotice" resultType="java.lang.Integer">
+        select count(*) from ads_salesroom_notice
+        <where>
+                            <if test="noticeId != null  and noticeId != '' ">and notice_id = #{noticeId}
+                </if>
+                            <if test="title != null  and title != '' ">and title = #{title}
+                </if>
+                            <if test="content != null  and content != '' ">and content = #{content}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="publicationTime != null ">and publication_time = #{publicationTime}
+                </if>
+                            <if test="userId != null ">and user_id = #{userId}
+                </if>
+                            <if test="status != null ">and status = #{status}
+                </if>
+                            <if test="plateId != null  and plateId != '' ">and plate_id = #{plateId}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsSalesroomNoticeById" parameterType="String" resultMap="AdsSalesroomNoticeResult">
+        <include refid="selectAdsSalesroomNoticeVo"/>
+        where notice_id = #{noticeId}
+    </select>
+
+    <insert id="insertAdsSalesroomNotice" parameterType="AdsSalesroomNotice">
+        insert into ads_salesroom_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="noticeId != null  and noticeId != ''  ">notice_id,
+                    </if>
+                                                                <if test="title != null  and title != ''  ">title,
+                    </if>
+                                                                <if test="content != null  and content != ''  ">content,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                create_time,
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                update_time,
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                                                <if test="publicationTime != null  ">publication_time,
+                    </if>
+                                                                <if test="userId != null  ">user_id,
+                    </if>
+                                                                <if test="status != null  ">status,
+                    </if>
+                                                                <if test="plateId != null  and plateId != ''  ">plate_id,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="noticeId != null  and noticeId != ''  ">#{noticeId},
+                    </if>
+                                                                <if test="title != null  and title != ''  ">#{title},
+                    </if>
+                                                                <if test="content != null  and content != ''  ">#{content},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                                now(),
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                now(),
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                                                <if test="publicationTime != null  ">#{publicationTime},
+                    </if>
+                                                                <if test="userId != null  ">#{userId},
+                    </if>
+                                                                <if test="status != null  ">#{status},
+                    </if>
+                                                                <if test="plateId != null  and plateId != ''  ">#{plateId},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsSalesroomNotice" parameterType="AdsSalesroomNotice">
+        update ads_salesroom_notice
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="title != null  and title != ''  ">title = #{title},
+                    </if>
+                                                                <if test="content != null  and content != ''  ">content = #{content},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                update_time = now(),
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                                                <if test="publicationTime != null  ">publication_time = now(),
+                    </if>
+                                                                <if test="userId != null  ">user_id = #{userId},
+                    </if>
+                                                                <if test="status != null  ">status = #{status},
+                    </if>
+                                                                <if test="plateId != null  and plateId != ''  ">plate_id = #{plateId},
+                    </if>
+                                    </trim>
+        where notice_id = #{noticeId}
+    </update>
+
+    <delete id="deleteAdsSalesroomNoticeById" parameterType="String">
+        delete from ads_salesroom_notice where notice_id = #{noticeId}
+    </delete>
+
+    <delete id="deleteAdsSalesroomNoticeByIds" parameterType="String">
+        delete from ads_salesroom_notice where notice_id in
+        <foreach item="noticeId" collection="array" open="(" separator="," close=")">
+            #{noticeId}
+        </foreach>
+    </delete>
+
+</mapper>

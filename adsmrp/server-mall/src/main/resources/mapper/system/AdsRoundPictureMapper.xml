@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsRoundPictureMapper">
+
+    <resultMap type="AdsRoundPicture" id="AdsRoundPictureResult">
+                    <result property="pictureId" column="picture_id"/>
+                    <result property="pictureUrl" column="picture_url"/>
+                    <result property="pcitureLink" column="pciture_link"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="merchantName" column="merchant_name"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+                    <result property="pictureDesc" column="picture_desc"/>
+            </resultMap>
+
+    <sql id="selectAdsRoundPictureVo">
+        select picture_id, picture_url, pciture_link, merchant_id, merchant_name, create_time, creater_id, creater, update_time, updater, picture_desc        from ads_round_picture
+    </sql>
+
+    <select id="selectAdsRoundPictureList" parameterType="AdsRoundPicture" resultMap="AdsRoundPictureResult">
+        <include refid="selectAdsRoundPictureVo"/>
+        <where>
+                            <if test="pictureId != null  and pictureId != '' ">and picture_id = #{pictureId}
+                </if>
+                            <if test="pictureUrl != null  and pictureUrl != '' ">and picture_url = #{pictureUrl}
+                </if>
+                            <if test="pcitureLink != null  and pcitureLink != '' ">and pciture_link = #{pcitureLink}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="pictureDesc != null  and pictureDesc != '' ">and picture_desc = #{pictureDesc}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsRoundPictureTotal" parameterType="AdsRoundPicture" resultType="Integer">
+        select count(*) from  ads_round_picture
+        <where>
+                            <if test="pictureId != null  and pictureId != '' ">and picture_id = #{pictureId}
+                </if>
+                            <if test="pictureUrl != null  and pictureUrl != '' ">and picture_url = #{pictureUrl}
+                </if>
+                            <if test="pcitureLink != null  and pcitureLink != '' ">and pciture_link = #{pcitureLink}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                </if>
+                            <if test="merchantName != null  and merchantName != '' ">and merchant_name = #{merchantName}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                            <if test="pictureDesc != null  and pictureDesc != '' ">and picture_desc = #{pictureDesc}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsRoundPictureById" parameterType="String" resultMap="AdsRoundPictureResult">
+        <include refid="selectAdsRoundPictureVo"/>
+        where picture_id = #{pictureId}
+    </select>
+
+    <insert id="insertAdsRoundPicture" parameterType="AdsRoundPicture">
+        insert into ads_round_picture
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="pictureId != null  and pictureId != ''  ">picture_id,
+                    </if>
+                                                                <if test="pictureUrl != null  and pictureUrl != ''  ">picture_url,
+                    </if>
+                                                                <if test="pcitureLink != null  and pcitureLink != ''  ">pciture_link,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name,
+                    </if>
+                                                                create_time,
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                update_time,
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                                                <if test="pictureDesc != null  and pictureDesc != ''  ">picture_desc,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="pictureId != null  and pictureId != ''  ">#{pictureId},
+                    </if>
+                                                                <if test="pictureUrl != null  and pictureUrl != ''  ">#{pictureUrl},
+                    </if>
+                                                                <if test="pcitureLink != null  and pcitureLink != ''  ">#{pcitureLink},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">#{merchantName},
+                    </if>
+                                                               now(),
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                now(),
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                                                <if test="pictureDesc != null  and pictureDesc != ''  ">#{pictureDesc},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsRoundPicture" parameterType="AdsRoundPicture">
+        update ads_round_picture
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="pictureUrl != null  and pictureUrl != ''  ">picture_url = #{pictureUrl},
+                    </if>
+                                                                <if test="pcitureLink != null  and pcitureLink != ''  ">pciture_link = #{pcitureLink},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id = #{merchantId},
+                    </if>
+                                                                <if test="merchantName != null  and merchantName != ''  ">merchant_name = #{merchantName},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                               update_time = now(),
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                                                <if test="pictureDesc != null  and pictureDesc != ''  ">picture_desc = #{pictureDesc},
+                    </if>
+                                    </trim>
+        where picture_id = #{pictureId}
+    </update>
+
+    <delete id="deleteAdsRoundPictureById" parameterType="String">
+        delete from ads_round_picture where picture_id = #{pictureId}
+    </delete>
+
+    <delete id="deleteAdsRoundPictureByIds" parameterType="String">
+        delete from ads_round_picture where picture_id in
+        <foreach item="pictureId" collection="array" open="(" separator="," close=")">
+            #{pictureId}
+        </foreach>
+    </delete>
+
+</mapper>

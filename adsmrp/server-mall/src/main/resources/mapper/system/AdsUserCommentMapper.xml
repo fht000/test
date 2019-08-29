@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jdz.servermall.mapper.AdsUserCommentMapper">
+
+    <resultMap type="AdsUserComment" id="AdsUserCommentResult">
+                    <result property="commentId" column="comment_id"/>
+                    <result property="orderId" column="order_id"/>
+                    <result property="detailId" column="detail_id"/>
+                    <result property="userId" column="user_id"/>
+                    <result property="merchantId" column="merchant_id"/>
+                    <result property="goodsScore" column="goods_score"/>
+                    <result property="packScore" column="pack_score"/>
+                    <result property="expressScore" column="express_score"/>
+                    <result property="serviceScore" column="service_score"/>
+                    <result property="commentContent" column="comment_content"/>
+                    <result property="pictureUrl" column="picture_url"/>
+                    <result property="commentTime" column="comment_time"/>
+                    <result property="replyContent" column="reply_content"/>
+                    <result property="replyTime" column="reply_time"/>
+                    <result property="isAnonymous" column="is_anonymous"/>
+                    <result property="deleted" column="deleted"/>
+                    <result property="createTime" column="create_time"/>
+                    <result property="createrId" column="creater_id"/>
+                    <result property="creater" column="creater"/>
+                    <result property="updateTime" column="update_time"/>
+                    <result property="updater" column="updater"/>
+            </resultMap>
+
+    <sql id="selectAdsUserCommentVo">
+        select comment_id,detail_id, order_id, user_id, goods_score, pack_score, express_score, service_score, comment_content, picture_url, comment_time, reply_content, reply_time, is_anonymous, deleted, create_time, creater_id, creater, update_time, updater        from ads_user_comment
+    </sql>
+
+    <select id="selectAdsUserCommentList" parameterType="AdsUserComment" resultMap="AdsUserCommentResult">
+        <include refid="selectAdsUserCommentVo"/>
+        <where>
+                            <if test="commentId != null  and commentId != '' ">and comment_id = #{commentId}
+                </if>
+                            <if test="orderId != null  and orderId != '' ">and order_id = #{orderId}
+                </if>
+                            <if test="detailId != null  and detailId != '' ">and detail_id = #{detailId}
+                </if>
+                            <if test="userId != null  and userId != '' ">and user_id = #{userId}
+                </if>
+                            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+                            </if>
+                            <!--<if test="goodsScore != null ">and goods_score = #{goodsScore}-->
+                <!--</if>-->
+                            <if test="goodsScore == 3 ">and goods_score &lt;= #{goodsScore}
+                </if>
+                            <if test="goodsScore == 4 ">and goods_score >= #{goodsScore}
+                </if>
+                            <if test="goodsScore == 5 ">and goods_score = #{goodsScore}
+                </if>
+                            <if test="packScore != null ">and pack_score = #{packScore}
+                </if>
+                            <if test="expressScore != null ">and express_score = #{expressScore}
+                </if>
+                            <if test="serviceScore != null ">and service_score = #{serviceScore}
+                </if>
+                            <if test="commentContent != null  and commentContent != '' ">and comment_content = #{commentContent}
+                </if>
+                            <if test="pictureUrl != null  and pictureUrl != '' ">and picture_url = #{pictureUrl}
+                </if>
+                            <if test="commentTime != null ">and comment_time = #{commentTime}
+                </if>
+                            <if test="replyContent != null  and replyContent != '' ">and reply_content = #{replyContent}
+                </if>
+                            <if test="replyTime != null ">and reply_time = #{replyTime}
+                </if>
+                            <if test="isAnonymous != null ">and is_anonymous = #{isAnonymous}
+                </if>
+                            <if test="deleted != null ">and deleted = #{deleted}
+                </if>
+                            <if test="createTime != null ">and create_time = #{createTime}
+                </if>
+                            <if test="createrId != null  and createrId != '' ">and creater_id = #{createrId}
+                </if>
+                            <if test="creater != null  and creater != '' ">and creater = #{creater}
+                </if>
+                            <if test="updateTime != null ">and update_time = #{updateTime}
+                </if>
+                            <if test="updater != null  and updater != '' ">and updater = #{updater}
+                </if>
+                    </where>
+    </select>
+
+    <select id="selectAdsUserCommentByComment" parameterType="AdsUserComment" resultMap="AdsUserCommentResult">
+        <include refid="selectAdsUserCommentVo"/>
+        <where>
+            <if test="commentId != null  and commentId != '' ">and comment_id = #{commentId}
+            </if>
+            <if test="orderId != null  and orderId != '' ">and order_id = #{orderId}
+            </if>
+            <if test="detailId != null  and detailId != '' ">and detail_id = #{detailId}
+            </if>
+            <if test="userId != null  and userId != '' ">and user_id = #{userId}
+            </if>
+            <if test="merchantId != null  and merchantId != '' ">and merchant_id = #{merchantId}
+            </if>
+
+        </where>
+    </select>
+
+    <insert id="insertAdsUserComment" parameterType="AdsUserComment">
+        insert into ads_user_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                <if test="commentId != null  and commentId != ''  ">comment_id,
+                    </if>
+                                                                <if test="orderId != null  and orderId != ''  ">order_id,
+                    </if>
+                                                                <if test="detailId != null  and detailId != ''  ">detail_id,
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">user_id,
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">merchant_id,
+                    </if>
+                                                                <if test="goodsScore != null  ">goods_score,
+                    </if>
+                                                                <if test="packScore != null  ">pack_score,
+                    </if>
+                                                                <if test="expressScore != null  ">express_score,
+                    </if>
+                                                                <if test="serviceScore != null  ">service_score,
+                    </if>
+                                                                <if test="commentContent != null  and commentContent != ''  ">comment_content,
+                    </if>
+                                                                <if test="pictureUrl != null  and pictureUrl != ''  ">picture_url,
+                    </if>
+                                                                <if test="commentTime != null  ">comment_time,
+                    </if>
+                                                                <if test="replyContent != null  and replyContent != ''  ">reply_content,
+                    </if>
+                                                                <if test="replyTime != null  ">reply_time,
+                    </if>
+                                                                <if test="isAnonymous != null  ">is_anonymous,
+                    </if>
+                                                                <if test="deleted != null  ">deleted,
+                    </if>
+                                                                <if test="createTime != null  ">create_time,
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id,
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater,
+                    </if>
+                                                                <if test="updateTime != null  ">update_time,
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater,
+                    </if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                <if test="commentId != null  and commentId != ''  ">#{commentId},
+                    </if>
+                                                                <if test="orderId != null  and orderId != ''  ">#{orderId},
+                    </if>
+                                                                <if test="detailId != null  and detailId != ''  ">#{detailId},
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">#{userId},
+                    </if>
+                                                                <if test="merchantId != null  and merchantId != ''  ">#{merchantId},
+                    </if>
+                                                                <if test="goodsScore != null  ">#{goodsScore},
+                    </if>
+                                                                <if test="packScore != null  ">#{packScore},
+                    </if>
+                                                                <if test="expressScore != null  ">#{expressScore},
+                    </if>
+                                                                <if test="serviceScore != null  ">#{serviceScore},
+                    </if>
+                                                                <if test="commentContent != null  and commentContent != ''  ">#{commentContent},
+                    </if>
+                                                                <if test="pictureUrl != null  and pictureUrl != ''  ">#{pictureUrl},
+                    </if>
+                                                                <if test="commentTime != null  ">#{commentTime},
+                    </if>
+                                                                <if test="replyContent != null  and replyContent != ''  ">#{replyContent},
+                    </if>
+                                                                <if test="replyTime != null  ">#{replyTime},
+                    </if>
+                                                                <if test="isAnonymous != null  ">#{isAnonymous},
+                    </if>
+                                                                <if test="deleted != null  ">#{deleted},
+                    </if>
+                                                                <if test="createTime != null  ">#{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">#{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">#{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">#{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">#{updater},
+                    </if>
+                                    </trim>
+    </insert>
+
+    <update id="updateAdsUserComment" parameterType="AdsUserComment">
+        update ads_user_comment
+        <trim prefix="SET" suffixOverrides=",">
+                                                                            <if test="orderId != null  and orderId != ''  ">order_id = #{orderId},
+                    </if>
+                                                                <if test="userId != null  and userId != ''  ">user_id = #{userId},
+                    </if>
+                                                                <if test="detailId != null  and detailId != ''  ">detail_id = #{detailId},
+                    </if>
+                                                                <if test="goodsScore != null  ">goods_score = #{goodsScore},
+                    </if>
+                                                                <if test="packScore != null  ">pack_score = #{packScore},
+                    </if>
+                                                                <if test="expressScore != null  ">express_score = #{expressScore},
+                    </if>
+                                                                <if test="serviceScore != null  ">service_score = #{serviceScore},
+                    </if>
+                                                                <if test="commentContent != null  and commentContent != ''  ">comment_content = #{commentContent},
+                    </if>
+                                                                <if test="pictureUrl != null  and pictureUrl != ''  ">picture_url = #{pictureUrl},
+                    </if>
+                                                                <if test="commentTime != null  ">comment_time = #{commentTime},
+                    </if>
+                                                                <if test="replyContent != null  and replyContent != ''  ">reply_content = #{replyContent},
+                    </if>
+                                                                <if test="replyTime != null  ">reply_time = #{replyTime},
+                    </if>
+                                                                <if test="isAnonymous != null  ">is_anonymous = #{isAnonymous},
+                    </if>
+                                                                <if test="deleted != null  ">deleted = #{deleted},
+                    </if>
+                                                                <if test="createTime != null  ">create_time = #{createTime},
+                    </if>
+                                                                <if test="createrId != null  and createrId != ''  ">creater_id = #{createrId},
+                    </if>
+                                                                <if test="creater != null  and creater != ''  ">creater = #{creater},
+                    </if>
+                                                                <if test="updateTime != null  ">update_time = #{updateTime},
+                    </if>
+                                                                <if test="updater != null  and updater != ''  ">updater = #{updater},
+                    </if>
+                                    </trim>
+        where comment_id = #{commentId}
+    </update>
+
+    <delete id="deleteAdsUserCommentById" parameterType="String">
+        delete from ads_user_comment where comment_id = #{commentId}
+    </delete>
+
+    <delete id="deleteAdsUserCommentByIds" parameterType="String">
+        delete from ads_user_comment where comment_id in
+        <foreach item="commentId" collection="array" open="(" separator="," close=")">
+            #{commentId}
+        </foreach>
+    </delete>
+
+</mapper>
